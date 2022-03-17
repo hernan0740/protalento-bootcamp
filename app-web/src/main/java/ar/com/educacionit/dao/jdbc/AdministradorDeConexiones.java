@@ -8,11 +8,23 @@ import ar.com.educacionit.dao.exceptions.GenericException;
 public class AdministradorDeConexiones {
 
 	public static Connection obtenerConexion() throws GenericException {
-		String url = "jdbc:mysql://localhost:3306/bootcamp-protalento";
+		/*String url = "jdbc:mysql://localhost:3306/bootcamp-protalento";
 		String user = "root";
 		String password = "root";
-		String diverName  = "com.mysql.cj.jdbc.Driver";
+		String diverName  = "com.mysql.cj.jdbc.Driver";*/
+	////////////////conexion heroku-prueba//////////////////////////////////////////////////////////	
+		String url = "postgres://eqtdmabtbggscc:21f4b0e782fae7ecafa1bd9d9fd4e2c6bfab3cebdb096db4dde11"
+				+ "df0d2b26b2f@ec2-34-238-37-113.compute-1.amazonaws.com:5432/dbhhd4b4oe5u5s"
+;
+		String user = "eqtdmabtbggscc";
+		String password = "21f4b0e782fae7ecafa1bd9d9fd4e2c6bfab3cebdb096db4dde11df0d2b26b2f";
+		String diverName  = "org.postgresql.Driver";
 		
+		
+		
+		
+		
+	///////////////////////////////////////////////////////////////////////////	
 		try {
 			//com.mysql.cj.jdbc.Driver.class.newInstance();
 			Class.forName(diverName);
