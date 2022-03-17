@@ -120,10 +120,10 @@ public class GeneratePDFFileIText {
 	    	            	rows=new PdfPCell(new Phrase(String.valueOf(aux.getStock())));
 	                		rows.setHorizontalAlignment(Element.ALIGN_CENTER);
 	    	            	table.addCell(rows);
-	    	            	rows=new PdfPCell(new Phrase(String.valueOf(aux.getMarcaId())));
+	    	            	rows=new PdfPCell(new Phrase(String.valueOf(aux.getMarcasId())));
 	                		rows.setHorizontalAlignment(Element.ALIGN_CENTER);
 	    	            	table.addCell(rows);
-	    	            	rows=new PdfPCell(new Phrase(String.valueOf(aux.getCategoriaId())));
+	    	            	rows=new PdfPCell(new Phrase(String.valueOf(aux.getCategoriasId())));
 	                		rows.setHorizontalAlignment(Element.ALIGN_CENTER);
 	    	            	table.setWidthPercentage(105f);
 	    	            	
