@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Insert title here</title>
+	</head>
+	<body>
+			<header>
+				<h1>REGISTRO DE USUARIOS</h1>
+			</header>
+			<nav>
+				<ul>
+					<li>Home</li>
+				</ul>
+			</nav>
+			<main>
+				<section>
+				<h2>Formulario de registro</h2>
+					<form action="/app-web" method="get">
+						<label>Nombre *</label>
+						<br>
+						<input type="text" name="nombre" >
+						<br>
+						<label>Email *</label>
+						<br>
+						<input type="email" name="email" >
+						<br>
+						<label>Recibir Novedades *</label>
+						<br>
+						<input type="checkbox" name="mensaje" >
+						<br>
+						<label>Casado</label>
+						<span>Si</span><input type="radio" name="casado" value="SI">
+						<span>No</span><input type="radio" name="casado" value="NO">
+						<br>
+						<label>Rango de edad</label>
+						<select name="rangoEdad">
+							<option value="18-25">18-25</option>
+							<option value="26-36">26-36</option>
+							<option value=">36">mayor 36</option>
+						</select>
+						<br>
+						<label>Fecha de nacimiento</label>
+						<br>
+						<input type="date" name="fechaNacimiento" >
+						<br>
+						<button>Enviar</button>
+					</form>			
+				</section>
+			</main>
+	</body>
+</html>
