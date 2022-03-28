@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Formulario de registro</title>
+	</head>
+	<body>
+			<header>
+				<h1 align="center">Plataforma de registro</h1>
+			</header>
+			<nav>
+				<hr>
+				<hr>
+			</nav>
+			<main>
+				<section>
+				
+				<h2 align="center">Ingresar datos</h2>
+					<form action="../RegistroServlet" method="Post" style="text-align: center;">
+				
+						<label align="rigth">Nombre *</label>
+						<br>
+						<input type="text" name="nombre" required >
+						<br>
+						<label>Apellido *</label>
+						<br>
+						<input type="text" name="apellido" required>
+						<br>
+						<label>Documento *</label>
+						<br>
+						<input type="text" name="documento" required>
+						<br>
+						<label>Edad *</label>
+						<br>
+						<input type="text" name="edad" required>
+						<br>
+						<br>
+						<label>Ocupacion</label>
+						<br>
+						<select name="ocupacion" >
+							<option value="Estudiante">Estudiante</option>
+							<option value="Empleado">Empleado</option>
+							<option value="Independiente">Independiente</option>
+						</select>
+						<br>
+						<br>
+						<label>Fecha de nacimiento</label>
+						<br>
+						<input type="date" name="fechaNacimiento" required>
+						<br>
+						<br>
+						<button>Enviar</button>
+					</form>	
+					<form action="../LregistroServlet" method="Get" style="text-align: center;">
+						<hr>
+						<hr>
+						<button>Listar Registros</button>
+						
+					</form>	
+				</section>
+			</main>
+			
+	</body>
+</html>

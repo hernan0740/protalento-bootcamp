@@ -7,6 +7,10 @@ public class Users {
 	private String password;
 	
 	private Socios socio;
+	
+	public Users() {
+		
+	}
 
 	public Users(Long id, String username, String password) {
 		super();

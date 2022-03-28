@@ -29,27 +29,26 @@ public class LoginServlet extends HttpServlet{
 		
 		//LOGIN SERVICE
 		LoginService ls=new LoginServiceImpl();
-		
 		//Users user= ls.getUserByUserName(usernameFromHtml);
 		ViewEnums target=ViewEnums.LOGIN_SUCCESS;
+		
 		Users user;
+		
 		try {
-				user = ls.getUserByUserName(usernameFromHtml);
+				user = ls.getUserByUserNameAndPassword(usernameFromHtml,passwordFrontHtml);
 			
-			if(user !=null) {
-				//BCrypt encriptacion
-				BCrypt.Result result= BCrypt.verifyer().
-						verify(passwordFrontHtml.getBytes(), user.getPassword().getBytes());
-				//Realizar el hash de password que viene de htmk y compararlo con  le del request
-				if(!result.verified) {
+			if(user ==null) {
+			
 					target=ViewEnums.LOGIN;
 					//enviar al usuario loginSucces.jsp
+				}else {
+					//request
+					//req.setAttribute("usuario",user);
+					//por session
+					req.getSession().setAttribute("usuario", user);
 				}
 		
-			}else {
-				//login.jsp con algun mensaje de no existe usuario
-				target=ViewEnums.LOGIN;
-			}
+			
 		} catch (ServiceException e) {
 			
 			e.printStackTrace();
