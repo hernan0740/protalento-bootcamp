@@ -8,8 +8,8 @@ public class RegistroUsuario {
 	
 	@Override
 	public String toString() {
-		return " [nombre=" + nombre + ", apellido=" + apellido + ", documento=" + documento + ", edad=" + edad
-				+ ", ocupacion=" + ocupacion + ", fechaNacimiento=" + fechaNacimiento + "]";
+		return " [Nombre= " + nombre+" "+apellido + "   _Documento= " + documento + "   _Edad= " + edad
+				+ "   _Ocupacion= " + ocupacion + "   _FechaNacimiento= " + fechaNacimiento + "]";
 	}
 
 	private String nombre;

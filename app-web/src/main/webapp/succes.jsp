@@ -6,34 +6,29 @@
 	<body>
 			<!-- encabezado del codumento -->
 			<header>
-				<h1>Se ha completado exitosamente el registro</h1>
+				<h1 align="center"><FONT SIZE=8>Se ha completado el registro</FONT></h1>
 			</header>
-			<!-- enlaces de navegacion -->
-			<nav>
-			
-			</nav>
+
 			<!-- Seccion principal del documento -->
 			<main>
 				<!-- seccion asociada al contenido principal -->
+			<section>
+				<table  align="center">
+					<tr>
+						<td>
+							<img align="middle"
+							height="70%"
+							src="/app-web/img/RegSucces.png">
+						</td>
+					<tr>
+				</table>
 				
-				<img align="middle"
-				height="50%"
-				width="50%"
-				src="/app-web/img/RegSucces.png">
-				
+				<form action="/app-web/html/registroDatos.html" align="center">
+						 <hr>
+							 <input type="submit" value="Regresar"></form>
+						 <hr>
+				</form>
+			</section>
 			</main>
-			<!-- pie de pagina -->
-			<footer>
-			<form action="/app-web/html/registroDatos.html">
-			
-		 <hr>
-			
-			 <input type="submit" value="Regresar"></form>
-		 <hr>
-			</form>
-			</footer>
-			<form></form>
-			
-			
 	</body>
-	</html>
+</html>

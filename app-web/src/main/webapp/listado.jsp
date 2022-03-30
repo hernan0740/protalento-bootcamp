@@ -29,6 +29,7 @@
 		%>	
 		<!-- puedo poner html puro y usar el objeto art -->	
 		<p><%=art.getTitulo()%></p>
+		
 		<%	
 		}
 		%>

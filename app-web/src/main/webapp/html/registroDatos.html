@@ -26,13 +26,14 @@
 						<br>
 						<input type="text" name="apellido" required>
 						<br>
-						<label>Documento *</label>
+						<label>Documento (6 Digitos): *</label>
 						<br>
-						<input type="text" name="documento" required>
+						<input type="number" name="documento" min="000000" max="999999" required>
 						<br>
-						<label>Edad *</label>
+						
+						<label>Edad (min=18 max=99): *</label>
 						<br>
-						<input type="text" name="edad" required>
+						<input type="number" name="edad" min="18" max="99" required>
 						<br>
 						<br>
 						<label>Ocupacion</label>

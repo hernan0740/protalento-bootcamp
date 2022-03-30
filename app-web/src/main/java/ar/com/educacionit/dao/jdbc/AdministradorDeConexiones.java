@@ -19,9 +19,6 @@ public class AdministradorDeConexiones {
 		String diverName  = "org.postgresql.Driver";
 		
 		
-		
-		
-		
 	///////////////////////////////////////////////////////////////////////////	
 		try {
 			//com.mysql.cj.jdbc.Driver.class.newInstance();
