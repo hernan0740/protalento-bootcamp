@@ -10,6 +10,7 @@ import ar.com.educacionit.domain.Users;
 import ar.com.educacionit.services.LoginService;
 import ar.com.educacionit.services.exceptions.ServiceException;
 import ar.com.educacionit.web.enums.ViewEnums;
+import ar.com.educacionit.web.enums.ViewKeysEnum;
 import at.favre.lib.crypto.bcrypt.BCrypt;
 
 public class LoginServiceImpl implements LoginService {	
@@ -26,26 +27,26 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	@Override
-	public Users getUserByUserNameAndPassword(String username, String passwordFrontHtml) throws ServiceException {
+	public Users getUserByUserNameAndPassword(String username, String passwordFromHtml) throws ServiceException {
 		try {
-			Users users=this.userDao.getUserByUserName(username);
-			//Valido password
-			BCrypt.Result result= BCrypt.verifyer().verify(passwordFrontHtml.getBytes(), users.getPassword().getBytes());
-			//Realizar el hash de password que viene de htmk y compararlo con  le del request
-			if(!result.verified) {
-				throw new ServiceException("creddenciales invalidas", null);
-			}
-			if(users !=null) {
-				
-				Socios socio=this.socioDao.getSociosByUserId(users.getId());
+			Users users = this.userDao.getUserByUserName(username);
+			
+			if(users != null) {
+				//valido password
+				BCrypt.Result result = BCrypt.verifyer().verify(passwordFromHtml.getBytes(), users.getPassword().getBytes());				
+				if(!result.verified) {
+					throw new ServiceException(ViewKeysEnum.USUARIO_PASSWORD_INVALIDO.getParam(), null);
+				}
+			
+				Socios socio = this.socioDao.getSociosByUserId(users.getId());
 				users.setSocio(socio);
 			}
 			return users;
 		} catch (GenericException e) {
-			
 			throw new ServiceException(e.getMessage(), e);
 		}
+	}
 		
 	}
 
-}
+

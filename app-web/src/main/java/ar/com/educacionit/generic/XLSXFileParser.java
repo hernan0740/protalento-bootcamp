@@ -38,10 +38,11 @@ public class XLSXFileParser extends BaseFile implements IParser<Collection<Artic
 				InputStream xlsxInputStream = new FileInputStream(xlsxFile);
 				Workbook workbook = new XSSFWorkbook(xlsxInputStream)
 			) {
+			
 			int cantHojas = workbook.getNumberOfSheets();
 			
-			for(int i=0;i<cantHojas;i++) {
-			Sheet hojas = workbook.getSheetAt(i);
+			//for(int i=0;i<cantHojas;i++) {
+			Sheet hojas = workbook.getSheetAt(0);
 			
 			
 			//collection
@@ -69,7 +70,7 @@ public class XLSXFileParser extends BaseFile implements IParser<Collection<Artic
 				}
 				
 				articulos.add(articulo);
- 			}}
+ 			}//}
 		}catch (IOException fnfe) {
 			throw new ParseException("No se ha podido parsear el archivo: " + getFilePath(),fnfe);
 		}

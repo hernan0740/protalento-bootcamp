@@ -14,6 +14,7 @@ import ar.com.educacionit.services.exceptions.ServiceException;
 import ar.com.educacionit.services.impl.LoginServiceImpl;
 import ar.com.educacionit.web.enums.LoginViewEnum;
 import ar.com.educacionit.web.enums.ViewEnums;
+import ar.com.educacionit.web.enums.ViewKeysEnum;
 import at.favre.lib.crypto.bcrypt.BCrypt;
 
 @WebServlet("/LoginServlet")
@@ -22,40 +23,50 @@ public class LoginServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		//captura los parametros envaidos por el html/jsp
+		//capturo los parametros enviados por el html/jsp
+		String usernameFromHtml = req.getParameter(ViewKeysEnum.USERNAME.getParam());
+		String passwordFromHtml = req.getParameter(ViewKeysEnum.PASSWORD.getParam());
 		
-		String usernameFromHtml=req.getParameter(LoginViewEnum.USERNAME.getParam());
-		String passwordFrontHtml=req.getParameter(LoginViewEnum.PASSWORD.getParam());
+		ViewEnums target = ViewEnums.LOGIN_SUCCESS;
 		
-		//LOGIN SERVICE
-		LoginService ls=new LoginServiceImpl();
-		//Users user= ls.getUserByUserName(usernameFromHtml);
-		ViewEnums target=ViewEnums.LOGIN_SUCCESS;
+		//validaciones (mejorar sacando a un metodo a parte)
+		if(isValid(usernameFromHtml, passwordFromHtml)) {
 		
-		Users user;
-		
-		try {
-				user = ls.getUserByUserNameAndPassword(usernameFromHtml,passwordFrontHtml);
+			//LOGIN SERVICE
+			LoginService ls = new LoginServiceImpl();
 			
-			if(user ==null) {
+			Users user;
 			
-					target=ViewEnums.LOGIN;
-					//enviar al usuario loginSucces.jsp
+			try {
+				user = ls.getUserByUserNameAndPassword(usernameFromHtml,passwordFromHtml);
+			
+				if(user == null) {
+					//guardar en el request
+					req.setAttribute(ViewKeysEnum.ERROR_GENERAL.getParam(), ViewKeysEnum.USUARIO_PASSWORD_INVALIDO.getParam());
+					target = ViewEnums.LOGIN;				
 				}else {
-					//request
-					//req.setAttribute("usuario",user);
-					//por session
-					req.getSession().setAttribute("usuario", user);
+					//session
+					req.getSession().setAttribute(ViewKeysEnum.USER.getParam(), user);
 				}
-		
-			
-		} catch (ServiceException e) {
-			
-			e.printStackTrace();
-			target= ViewEnums.ERROR_GENERAL;
+			} catch (ServiceException e) {			
+				//crear una tabla de mapeo de errores clave - valor
+				req.setAttribute(ViewKeysEnum.ERROR_GENERAL.getParam(), e.getMessage());
+				target = ViewEnums.LOGIN;//ctrl+shit+i
+			}
+		}else {
+			//guardar en el request
+			req.setAttribute(ViewKeysEnum.ERROR_GENERAL.getParam(), ViewKeysEnum.USUARIO_PASSWORD_INVALIDO.getParam());
+			target  = ViewEnums.LOGIN;
 		}
 		
-		getServletContext().getRequestDispatcher(target.getView()).forward(req, resp);;
+		// ir a target
+		getServletContext().getRequestDispatcher(target.getView()).forward(req, resp);
+	}
+
+	protected boolean isValid(String usernameFromHtml, String passwordFromHtml) {
+		return (usernameFromHtml !=null && !usernameFromHtml.isBlank()) 
+				&&
+				(passwordFromHtml !=null && !passwordFromHtml.isBlank());
 	}
 	
 }
