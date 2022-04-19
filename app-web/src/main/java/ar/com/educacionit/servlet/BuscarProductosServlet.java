@@ -14,26 +14,26 @@ import ar.com.educacionit.domain.Articulos;
 import ar.com.educacionit.services.ArticulosServices;
 import ar.com.educacionit.services.exceptions.ServiceException;
 import ar.com.educacionit.services.impl.ArticulosServicesImpl;
-@WebServlet("/BuscarProductosServlet")
+
+@WebServlet("/controllers/BuscarProductosServlet")
 public class BuscarProductosServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		ArticulosServices service=new ArticulosServicesImpl();
+		
+//		String limit = req.getParameter("limit");//10|20|30|40
+//		String offset = req.getParameter("offset");//0|1
+				
+		ArticulosServices service = new ArticulosServicesImpl();
 		
 		try {
-			List<Articulos> listado =service.findAll();
-			req.setAttribute("Listado", listado);
+			List<Articulos> listado = service.findAll();
+			req.setAttribute("LISTADO", listado);
 			getServletContext().getRequestDispatcher("/listado.jsp").forward(req, resp);
-			 
 		} catch (ServiceException e) {
-			//getServletContext().getRequestDispatcher("/loginSuccess.jsp").forward(req, resp);
-			//o envairlo a una lsita vacia
-			List<Articulos> listado=new ArrayList<>();
-			req.setAttribute("Listado", listado);
-			getServletContext().getRequestDispatcher("/loginSuccess.jsp").forward(req, resp);
+			List<Articulos> listado = new ArrayList<>();
+			req.setAttribute("LISTADO", listado);
+			getServletContext().getRequestDispatcher("/listado.jsp").forward(req, resp);
 		}
-		
-	
 	}
 }
