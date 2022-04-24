@@ -43,7 +43,7 @@ public class CSVFileParser extends BaseFile implements IParser<Collection<Articu
 		//leo archivo
 		try (FileReader fileReader = new FileReader(file);) {
 			try(BufferedReader br = new BufferedReader(fileReader);) {
-				//leer la primer línea y la descarto porque tiene los título
+				//leer la primer lï¿½nea y la descarto porque tiene los tï¿½tulo
 				String lineaLeida = br.readLine();
 				//id;titulo;precio;
 				
@@ -74,7 +74,7 @@ public class CSVFileParser extends BaseFile implements IParser<Collection<Articu
 		return articulos;
 	}
 	
-	public Collection<Articulos> parse() throws ParseException, IOException {
+	public Collection<Articulos> parse() throws ParseException {
 		
 		InputStream is = null;
 		FileReader fileReader = null;
@@ -92,15 +92,21 @@ public class CSVFileParser extends BaseFile implements IParser<Collection<Articu
 				}			
 				fileReader = new FileReader(file);
 				br = new BufferedReader(fileReader);
-			}				
+			}
+			
+			//lista vacia de articulos
+			return this.buildArchivos(br);
+		}catch(IOException ie) {
+			throw new ParseException(ie.getMessage(), ie);
 		}finally {
 			if(br != null) {
-				br.close();
+				try {
+					br.close();
+				} catch (IOException e) {
+					throw new ParseException(e.getMessage(), e);
+				}
 			}
 		}
-		
-		//lista vacia de articulos
-		return this.buildArchivos(br);
 	}
 
 	private Collection<Articulos> buildArchivos(BufferedReader br) throws IOException {
